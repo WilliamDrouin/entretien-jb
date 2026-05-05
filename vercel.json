@@ -1,5 +1,13 @@
 {
   "framework": "astro",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.entretien-jb.com" }],
+      "destination": "https://entretien-jb.com/:path*",
+      "permanent": true
+    }
+  ],
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
