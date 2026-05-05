@@ -1,0 +1,170 @@
+---
+---
+<header
+  id="site-nav"
+  data-scrolled="false"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out"
+>
+  <div class="container-custom">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-2.5" aria-label="Entretien JB — Accueil">
+        <div class="w-9 h-9 rounded-xl bg-[#16a34a] flex items-center justify-center flex-shrink-0 shadow-md">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22V12"/>
+            <path d="M5 12C5 7 8 3 12 2c4 1 7 5 7 10-3 0-5-1-7-3-2 2-4 3-7 3z"/>
+          </svg>
+        </div>
+        <div class="leading-none">
+          <span class="nav-logo-text block font-bold text-[1.05rem] transition-colors duration-300">Entretien JB</span>
+          <span class="nav-sub-text block text-[0.65rem] font-medium tracking-wide uppercase transition-colors duration-300">Saint-Georges Beauce</span>
+        </div>
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center gap-1" aria-label="Navigation principale">
+        {[
+          { href: '#services', label: 'Services' },
+          { href: '#about', label: 'À propos' },
+          { href: '#testimonials', label: 'Témoignages' },
+          { href: '#contact', label: 'Contact' },
+        ].map(({ href, label }) => (
+          <a
+            href={href}
+            class="nav-link px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 hover:scale-[1.02]"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop CTA + mobile hamburger -->
+      <div class="flex items-center gap-3">
+        <a
+          href="#contact"
+          class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#16a34a] text-white font-semibold text-sm hover:bg-[#15803d] active:scale-95 transition-all duration-200 shadow-sm"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Soumission gratuite
+        </a>
+
+        <button
+          id="mobile-menu-btn"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="md:hidden p-2.5 rounded-xl nav-link transition-colors duration-200"
+        >
+          <span id="hamburger-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </span>
+          <span id="close-icon" class="hidden">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu panel -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-white/10 bg-[#15803d]/95 backdrop-blur-md"
+  >
+    <nav class="container-custom py-4 flex flex-col gap-1" aria-label="Navigation mobile">
+      {[
+        { href: '#services', label: 'Services' },
+        { href: '#about', label: 'À propos' },
+        { href: '#testimonials', label: 'Témoignages' },
+        { href: '#contact', label: 'Contact' },
+      ].map(({ href, label }) => (
+        <a
+          href={href}
+          class="mobile-nav-link px-4 py-3 rounded-xl text-white/90 font-medium text-base hover:bg-white/10 hover:text-white transition-colors duration-150"
+        >
+          {label}
+        </a>
+      ))}
+      <div class="pt-2 pb-1">
+        <a
+          href="#contact"
+          class="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-white text-[#15803d] font-bold text-base hover:bg-green-50 transition-colors duration-200"
+        >
+          Soumission gratuite
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* === Transparent state (hero) === */
+  #site-nav .nav-logo-text { color: white; }
+  #site-nav .nav-sub-text  { color: rgba(255,255,255,0.65); }
+  #site-nav .nav-link      { color: rgba(255,255,255,0.88); }
+  #site-nav .nav-link:hover { background: rgba(255,255,255,0.12); color: white; }
+
+  /* === Scrolled state === */
+  #site-nav[data-scrolled="true"] {
+    background: rgba(250,250,247,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  #site-nav[data-scrolled="true"] .nav-logo-text { color: #0f172a; }
+  #site-nav[data-scrolled="true"] .nav-sub-text  { color: #6b7280; }
+  #site-nav[data-scrolled="true"] .nav-link      { color: #374151; }
+  #site-nav[data-scrolled="true"] .nav-link:hover { background: #f3f4f6; color: #16a34a; }
+
+  /* Mobile menu: always dark green panel regardless of scroll */
+  #site-nav[data-scrolled="true"] #mobile-menu {
+    background: rgba(21,128,61,0.97);
+    border-top-color: rgba(22,163,74,0.3);
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  function updateNavScroll() {
+    nav?.setAttribute('data-scrolled', window.scrollY > 80 ? 'true' : 'false');
+  }
+
+  window.addEventListener('scroll', updateNavScroll, { passive: true });
+  updateNavScroll();
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    hamburger?.classList.toggle('hidden', !isOpen ? true : false);
+    closeIcon?.classList.toggle('hidden', isOpen ? true : false);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+  });
+
+  // Close on any mobile nav link click
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      hamburger?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+      btn?.setAttribute('aria-label', 'Ouvrir le menu');
+    });
+  });
+</script>
