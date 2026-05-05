@@ -65,7 +65,7 @@ const highlights = [
         </div>
 
         <!-- City chips -->
-        <div class="flex flex-wrap gap-2.5 mb-8 reveal" style="transition-delay: 150ms;">
+        <div class="flex flex-wrap gap-2.5 mb-8 reveal" data-delay="150">
           {cities.map((city) =>
             city.primary ? (
               <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#16a34a] text-white text-sm font-semibold shadow-sm">
@@ -86,7 +86,7 @@ const highlights = [
         </div>
 
         <!-- "Not listed?" note -->
-        <div class="reveal" style="transition-delay: 250ms;">
+        <div class="reveal" data-delay="250">
           <div class="flex items-start gap-3 p-4 rounded-xl bg-[#0ea5e9]/8 border border-[#0ea5e9]/20">
             <svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
@@ -100,7 +100,7 @@ const highlights = [
       </div>
 
       <!-- Right: Highlights card -->
-      <div class="reveal" style="transition-delay: 200ms;">
+      <div class="reveal" data-delay="100" data-from="right">
         <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
           <!-- Card header -->
           <div class="px-7 py-6 border-b border-slate-100 flex items-center gap-3">
@@ -159,26 +159,3 @@ const highlights = [
   </div>
 </section>
 
-<style>
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-  .reveal.is-visible { opacity: 1; transform: none; }
-</style>
-
-<script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  document.querySelectorAll('#zone-service .reveal').forEach((el) => observer.observe(el));
-</script>

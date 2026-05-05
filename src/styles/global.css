@@ -57,6 +57,21 @@
   }
 }
 
+/* Motion: initial hidden state for scroll-reveal elements */
+.reveal {
+  opacity: 0;
+}
+
+/* Fallback: show content if JS is disabled */
+@media (scripting: none) {
+  .reveal { opacity: 1; }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
 @layer utilities {
   .section-padding {
     padding-top: 5rem;

@@ -103,7 +103,7 @@ const services: Service[] = [
       {services.map((service) => (
         <article
           class="service-card reveal group relative bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden cursor-default"
-          style={`transition-delay: ${service.delay}ms`}
+          data-delay={`${service.delay}`}
         >
           <!-- Top accent bar (slides in on hover) -->
           <div
@@ -184,7 +184,7 @@ const services: Service[] = [
     </div>
 
     <!-- Bottom CTA -->
-    <div class="text-center mt-14 reveal" style="transition-delay: 500ms;">
+    <div class="text-center mt-14 reveal" data-delay="500">
       <p class="text-slate-400 text-sm mb-5">
         Toutes les soumissions sont gratuites et sans engagement
       </p>
@@ -212,58 +212,12 @@ const services: Service[] = [
 </section>
 
 <style>
+  /* Hover uses CSS `translate` to avoid conflict with Motion's `transform` */
   .service-card {
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease,
-      opacity 0.5s ease,
-      translate 0.5s ease;
+    transition: translate 0.25s ease, box-shadow 0.25s ease;
   }
-
   .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow:
-      0 20px 40px rgba(0, 0, 0, 0.07),
-      0 8px 16px rgba(0, 0, 0, 0.04);
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition:
-      opacity 0.55s ease,
-      transform 0.55s ease;
-  }
-
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* Override: cards also need pointer-events during reveal transition */
-  .service-card.reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  .service-card.reveal.is-visible:hover {
-    transform: translateY(-5px);
+    translate: 0 -5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.04);
   }
 </style>
-
-<script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  document.querySelectorAll('#services .reveal').forEach((el) => observer.observe(el));
-</script>

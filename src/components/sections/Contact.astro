@@ -53,7 +53,7 @@ const services = [
     <div class="grid lg:grid-cols-5 gap-8 xl:gap-12">
 
       <!-- Form (3/5) -->
-      <div class="lg:col-span-3 reveal" style="transition-delay: 100ms;">
+      <div class="lg:col-span-3 reveal" data-delay="100">
         <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-7 md:p-9">
           <form
             id="contact-form"
@@ -186,7 +186,7 @@ const services = [
       </div>
 
       <!-- Info card (2/5) -->
-      <div class="lg:col-span-2 flex flex-col gap-6 reveal" style="transition-delay: 200ms;">
+      <div class="lg:col-span-2 flex flex-col gap-6 reveal" data-delay="200" data-from="right">
 
         <!-- Contact details -->
         <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-7">
@@ -271,13 +271,6 @@ const services = [
 </section>
 
 <style>
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-  .reveal.is-visible { opacity: 1; transform: none; }
-
   .form-input:invalid:not(:placeholder-shown) {
     border-color: #fca5a5;
   }
@@ -287,17 +280,6 @@ const services = [
 </style>
 
 <script>
-  /* Scroll reveal */
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObserver.unobserve(e.target); }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  document.querySelectorAll('#contact .reveal').forEach((el) => revealObserver.observe(el));
-
   /* Form handling */
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
