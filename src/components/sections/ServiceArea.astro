@@ -1,0 +1,184 @@
+---
+type City = { name: string; primary?: boolean };
+
+const cities: City[] = [
+  { name: 'Saint-Georges', primary: true },
+  { name: 'Beauceville' },
+  { name: 'Sainte-Marie' },
+  { name: 'Saint-Joseph-de-Beauce' },
+  { name: 'Scott' },
+  { name: 'Vallée-Jonction' },
+  { name: 'Saint-Côme-Linière' },
+  { name: 'Saint-Elzéar' },
+  { name: 'Saint-Frédéric' },
+  { name: 'Sainte-Aurélie' },
+];
+
+const highlights = [
+  {
+    iconPath: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+    label: '10+ municipalités desservies',
+  },
+  {
+    iconPath: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    label: '200+ propriétés entretenues',
+  },
+  {
+    iconPath: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    label: 'Réponse en moins de 24h',
+  },
+  {
+    iconPath: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    label: 'Intervention d\'urgence disponible',
+  },
+];
+---
+
+<section id="zone-service" class="section-padding relative overflow-hidden" style="background:#fafaf7;">
+  <!-- Green blob bottom-left -->
+  <div
+    class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full opacity-[0.06] pointer-events-none"
+    style="background: radial-gradient(circle, #16a34a 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="container-custom relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+
+      <!-- Left: Cities -->
+      <div>
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#16a34a]/10 text-[#16a34a] text-xs font-bold uppercase tracking-wider mb-5">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            Zone de service
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
+            On couvre toute<br/>
+            <span class="text-[#16a34a]">la Beauce</span>
+          </h2>
+          <p class="text-slate-500 text-lg leading-relaxed mb-8">
+            Basés à Saint-Georges, nous desservons un large territoire en Chaudière-Appalaches.
+            Soumission gratuite dans toute la zone.
+          </p>
+        </div>
+
+        <!-- City chips -->
+        <div class="flex flex-wrap gap-2.5 mb-8 reveal" style="transition-delay: 150ms;">
+          {cities.map((city) =>
+            city.primary ? (
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#16a34a] text-white text-sm font-semibold shadow-sm">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                {city.name}
+              </span>
+            ) : (
+              <span class="inline-flex items-center px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-medium hover:border-[#16a34a] hover:text-[#16a34a] transition-colors duration-150">
+                {city.name}
+              </span>
+            )
+          )}
+          <span class="inline-flex items-center px-3.5 py-2 rounded-xl bg-slate-100 text-slate-500 text-sm font-medium italic">
+            + environs
+          </span>
+        </div>
+
+        <!-- "Not listed?" note -->
+        <div class="reveal" style="transition-delay: 250ms;">
+          <div class="flex items-start gap-3 p-4 rounded-xl bg-[#0ea5e9]/8 border border-[#0ea5e9]/20">
+            <svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+            </svg>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              <strong class="text-slate-800">Votre ville n'est pas dans la liste?</strong>
+              {' '}Contactez-nous — nous desservons peut-être votre secteur ou pouvons nous déplacer selon la distance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Highlights card -->
+      <div class="reveal" style="transition-delay: 200ms;">
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+          <!-- Card header -->
+          <div class="px-7 py-6 border-b border-slate-100 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#16a34a] flex items-center justify-center flex-shrink-0">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 text-sm">Service professionnel</p>
+              <p class="text-slate-500 text-xs">Chaudière-Appalaches, QC</p>
+            </div>
+          </div>
+
+          <!-- Highlight items -->
+          <div class="divide-y divide-slate-50">
+            {highlights.map((h) => (
+              <div class="flex items-center gap-4 px-7 py-4">
+                <div class="w-9 h-9 rounded-xl bg-[#16a34a]/8 flex items-center justify-center flex-shrink-0">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#16a34a"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    set:html={h.iconPath}
+                  />
+                </div>
+                <span class="text-slate-700 text-sm font-medium">{h.label}</span>
+                <svg class="ml-auto flex-shrink-0 text-[#16a34a]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+            ))}
+          </div>
+
+          <!-- Card footer CTA -->
+          <div class="px-7 py-5 bg-slate-50 border-t border-slate-100">
+            <a
+              href="#contact"
+              class="group flex items-center justify-between text-sm font-semibold text-[#16a34a] hover:text-[#15803d] transition-colors"
+            >
+              <span>Vérifier ma zone de service</span>
+              <svg class="transition-transform group-hover:translate-x-1" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('#zone-service .reveal').forEach((el) => observer.observe(el));
+</script>

@@ -1,0 +1,162 @@
+---
+const reasons = [
+  {
+    iconPath:
+      '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    title: 'Service rapide',
+    description:
+      'Nous intervenons dans les délais convenus, sans exception. Votre temps est précieux — nous le respectons.',
+    accentColor: '#16a34a',
+    lightBg: 'rgba(22,163,74,0.09)',
+  },
+  {
+    iconPath:
+      '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+    title: '+10 ans d\'expérience',
+    description:
+      "Une équipe rodée qui connaît les défis du climat beauceron et s'adapte à chaque type de propriété.",
+    accentColor: '#0ea5e9',
+    lightBg: 'rgba(14,165,233,0.09)',
+  },
+  {
+    iconPath:
+      '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+    title: 'Prix compétitifs',
+    description:
+      'Des tarifs honnêtes et transparents. Soumission gratuite, aucun frais caché, aucune mauvaise surprise.',
+    accentColor: '#d97706',
+    lightBg: 'rgba(217,119,6,0.09)',
+  },
+  {
+    iconPath:
+      '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',
+    title: 'Satisfaction garantie',
+    description:
+      "Pas satisfait du résultat? Nous revenons corriger la situation. Votre confiance est notre priorité absolue.",
+    accentColor: '#059669',
+    lightBg: 'rgba(5,150,105,0.09)',
+  },
+];
+
+const stats = [
+  { value: '10+', label: 'ans d\'expérience' },
+  { value: '200+', label: 'clients satisfaits' },
+  { value: '4', label: 'saisons couvertes' },
+  { value: '100%', label: 'soumissions gratuites' },
+];
+---
+
+<section
+  id="about"
+  class="section-padding bg-white relative overflow-hidden"
+>
+  <!-- Subtle diagonal texture -->
+  <div
+    class="absolute inset-0 opacity-[0.025]"
+    style="background-image: repeating-linear-gradient(-45deg, #16a34a, #16a34a 1px, transparent 1px, transparent 8px);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Top-right green accent -->
+  <div
+    class="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-[0.06] pointer-events-none"
+    style="background: radial-gradient(circle, #16a34a 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="container-custom relative z-10">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#16a34a]/10 text-[#16a34a] text-xs font-bold uppercase tracking-wider mb-5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Pourquoi nous choisir
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
+        Votre confiance,<br/>
+        <span class="text-[#16a34a]">notre priorité</span>
+      </h2>
+      <p class="text-slate-500 text-lg leading-relaxed">
+        Depuis plus de 10 ans, nous servons les familles et les entreprises de la Beauce
+        avec professionnalisme, rigueur et un souci du détail qui fait la différence.
+      </p>
+    </div>
+
+    <!-- Feature grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-16">
+      {reasons.map((reason, i) => (
+        <div
+          class="reason-item reveal group flex items-start gap-5 p-6 md:p-7 rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+          style={`transition-delay: ${(i + 1) * 100}ms`}
+        >
+          <!-- Icon -->
+          <div
+            class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 transition-transform duration-200 group-hover:scale-110"
+            style={`background: ${reason.lightBg}`}
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={reason.accentColor}
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              set:html={reason.iconPath}
+            />
+          </div>
+          <!-- Text -->
+          <div>
+            <h3 class="text-[1.05rem] font-bold text-slate-900 mb-1.5 group-hover:text-slate-800 transition-colors">
+              {reason.title}
+            </h3>
+            <p class="text-slate-500 text-sm leading-relaxed">
+              {reason.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Stats band -->
+    <div class="reveal" style="transition-delay: 500ms;">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-100 rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
+        {stats.map((stat) => (
+          <div class="bg-white px-6 py-7 text-center">
+            <div class="text-3xl font-black text-[#16a34a] mb-1">{stat.value}</div>
+            <div class="text-slate-500 text-sm font-medium">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('#about .reveal').forEach((el) => observer.observe(el));
+</script>

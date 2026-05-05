@@ -1,20 +1,26 @@
 ---
 import Layout from '../components/layout/Layout.astro';
 import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
 import Hero from '../components/sections/Hero.astro';
 import Services from '../components/sections/Services.astro';
+import WhyUs from '../components/sections/WhyUs.astro';
+import ServiceArea from '../components/sections/ServiceArea.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Contact from '../components/sections/Contact.astro';
 ---
 
 <Layout>
   <Nav />
-  <Hero />
 
-  <!-- Placeholder sections — to be built -->
   <main id="main-content">
+    <Hero />
     <Services />
-    <section id="about"         class="section-padding bg-white"><div class="container-custom"><p class="text-slate-400">À propos — à venir</p></div></section>
-    <section id="zone-service"  class="section-padding"><div class="container-custom"><p class="text-slate-400">Zone de service — à venir</p></div></section>
-    <section id="testimonials"  class="section-padding bg-white"><div class="container-custom"><p class="text-slate-400">Témoignages — à venir</p></div></section>
-    <section id="contact"       class="section-padding"><div class="container-custom"><p class="text-slate-400">Contact — à venir</p></div></section>
+    <WhyUs />
+    <ServiceArea />
+    <Testimonials />
+    <Contact />
   </main>
+
+  <Footer />
 </Layout>

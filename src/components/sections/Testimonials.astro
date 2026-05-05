@@ -1,0 +1,174 @@
+---
+const testimonials = [
+  {
+    quote:
+      "Ça fait 3 ans qu'Entretien JB déneige mon entrée. Jamais une fois où j'ai eu à me plaindre — ils arrivent tôt le matin et c'est toujours impeccable. Je les recommande sans hésiter à tous mes voisins!",
+    name: 'Martin Côté',
+    city: 'Saint-Georges',
+    service: 'Déneigement résidentiel',
+    serviceColor: '#0ea5e9',
+    serviceBg: 'rgba(14,165,233,0.09)',
+    initials: 'MC',
+    avatarBg: '#0ea5e9',
+  },
+  {
+    quote:
+      "J'ai demandé une soumission pour la tonte de gazon et ils sont venus la semaine suivante. Le travail est impeccable, les prix sont raisonnables et l'équipe est très professionnelle. Très satisfaite de mon choix!",
+    name: 'Josée Turgeon',
+    city: 'Beauceville',
+    service: 'Tonte de gazon',
+    serviceColor: '#16a34a',
+    serviceBg: 'rgba(22,163,74,0.09)',
+    initials: 'JT',
+    avatarBg: '#16a34a',
+  },
+  {
+    quote:
+      "Le nettoyage de printemps a complètement transformé ma cour. En quelques heures, tout était propre et prêt pour l'été. C'est exactement le genre de service local sérieux dont on a besoin en Beauce.",
+    name: 'André Poulin',
+    city: 'Sainte-Marie',
+    service: 'Nettoyage de terrain',
+    serviceColor: '#d97706',
+    serviceBg: 'rgba(217,119,6,0.09)',
+    initials: 'AP',
+    avatarBg: '#d97706',
+  },
+];
+---
+
+<section id="testimonials" class="section-padding bg-white relative overflow-hidden">
+  <!-- Decorative quote mark bg -->
+  <div
+    class="absolute top-8 left-1/2 -translate-x-1/2 text-[20rem] font-black text-slate-100 leading-none select-none pointer-events-none opacity-60"
+    aria-hidden="true"
+  >"</div>
+
+  <div class="container-custom relative z-10">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#16a34a]/10 text-[#16a34a] text-xs font-bold uppercase tracking-wider mb-5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        Témoignages
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
+        Ce que disent<br/>
+        <span class="text-[#16a34a]">nos clients</span>
+      </h2>
+      <p class="text-slate-500 text-lg leading-relaxed">
+        Des centaines de familles et d'entreprises en Beauce nous font confiance année après année.
+      </p>
+    </div>
+
+    <!-- Testimonial cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      {testimonials.map((t, i) => (
+        <article
+          class="testimonial-card reveal group flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          style={`transition-delay: ${(i + 1) * 120}ms`}
+        >
+          <!-- Top accent -->
+          <div
+            class="h-1 w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+            style={`background: ${t.serviceColor}`}
+            aria-hidden="true"
+          ></div>
+
+          <div class="flex flex-col flex-1 p-7">
+            <!-- Stars -->
+            <div class="flex items-center gap-0.5 mb-5" aria-label="5 étoiles sur 5">
+              {Array.from({ length: 5 }).map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              ))}
+            </div>
+
+            <!-- Quote -->
+            <blockquote class="text-slate-600 text-[0.94rem] leading-relaxed flex-1 mb-6">
+              "{t.quote}"
+            </blockquote>
+
+            <!-- Author + service tag -->
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <!-- Avatar -->
+                <div
+                  class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
+                  style={`background: ${t.avatarBg}`}
+                  aria-hidden="true"
+                >
+                  {t.initials}
+                </div>
+                <div>
+                  <p class="font-bold text-slate-900 text-sm">{t.name}</p>
+                  <p class="text-slate-400 text-xs">{t.city}</p>
+                </div>
+              </div>
+              <!-- Service badge -->
+              <span
+                class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap"
+                style={`background: ${t.serviceBg}; color: ${t.serviceColor}`}
+              >
+                {t.service}
+              </span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Aggregate trust row -->
+    <div class="text-center reveal" style="transition-delay: 480ms;">
+      <div class="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-6 px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100">
+        <div class="flex items-center gap-1">
+          {Array.from({ length: 5 }).map(() => (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          ))}
+        </div>
+        <div class="hidden sm:block w-px h-5 bg-slate-200"></div>
+        <p class="text-slate-600 text-sm font-medium">
+          <strong class="text-slate-900">50+ avis positifs</strong> · Saint-Georges et environs
+        </p>
+        <div class="hidden sm:block w-px h-5 bg-slate-200"></div>
+        <p class="text-slate-500 text-xs italic">
+          Témoignages représentatifs — à personnaliser
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease, opacity 0.55s ease;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .testimonial-card.reveal.is-visible:hover { transform: translateY(-4px); }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('#testimonials .reveal').forEach((el) => observer.observe(el));
+</script>
